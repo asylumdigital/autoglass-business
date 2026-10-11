@@ -74,7 +74,9 @@ class Video extends BlockController
             </style>
         HTML;
 
-        add_action('wp_head', function() use ($style) {
+        $action = !did_action('wp_head') ? 'wp_head' : 'wp_footer';
+
+        add_action($action, function() use ($style) {
             echo $style;
         });
     }
